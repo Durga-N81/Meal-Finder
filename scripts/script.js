@@ -6,7 +6,7 @@ fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
   .then((data) => {
     let output = "";
 
-    data.categories.forEach((item) => {
+    data.categories.map((item) => {
       output += `
                     <li class="list-group-item">
                         ${item.strCategory}
@@ -20,3 +20,4 @@ fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
   .catch((error) => {
     console.log("Error:", error);
   });
+

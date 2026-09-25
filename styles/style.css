@@ -3,9 +3,54 @@
     padding: 0;
     box-sizing: border-box;
 }
-.fw-bold  {
-    color: white;
+body{
+    font-family: "Segoe UI",Arial,sans-serif;
+    color: #222;
+    background-color: #fff;
 }
-.fa-solid fa-utensils{
+a{
+    text-decoration: none;
+    color: #222;
+
+}
+ul{
+    list-style:none ;
+}
+/*  **********************NAVABR******************** */
+.navbar{
+    background-color: #e2691f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    position: relative;
+    z-index: 20;
+}
+.navbar .logo h1{
+    color:white;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+/* **************** hamburger menu ****************** */
+.hamberger-btn{
+    background: none;
+    border: none;
     color: white;
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.side-menu{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    max-width: 280px;
+    background-color: white;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 40px;
+    padding: 20px;
+    overflow-y: auto;
 }

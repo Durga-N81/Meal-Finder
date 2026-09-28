@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meal Finder</title>
-    <link href="styles/style.css" rel="stylesheet" />
-    <link
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal-finder-Details</title>
+    <link rel="stylesheet" href="styles/style.css">
+     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
@@ -13,8 +13,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-  </head>
-  <body>
+
+</head>
+<body>
     <nav class="navbar text-white" style="background-color: #e16120">
       <div class="container-fluid">
         <a href="#" class="navbar-brand d-flex align-items-center">
@@ -47,16 +48,13 @@
           data-bs-dismiss="offcanvas"
         ></button>
       </div>
-
-      <!-- MENU BODY -->
       <div class="offcanvas-body">
         <ul id="categoryMenu" class="list-group">
           <!-- API DATA WILL COME HERE -->
         </ul>
       </div>
     </div>
-    <!-- hero section -->
-    <section class="hero">
+     <section class="hero">
       <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search recipes here ..."/>
         <button id="searchBtn">&#128269;</button>
@@ -64,22 +62,5 @@
       <h2>What are your favorite cuisines?</h2>
       <p class="sub-heading">PERSONALIZE YOUR EXPERIENCE</p>
     </section>
-    <main>
-      <!-- show after seraching  -->
-      <section class="section" id="mealsection " hidden>
-        <h2 class="section-title">Meals</h2>
-        <p id="noResultMsg" class="no-result" hidden>No food found</p>
-        <div class="grid" id="mealsGrid"></div>
-      </section>
-      <section class="section alt">
-        <h2 class="section-title">Categories</h2>
-        <div class="grid" id="categoriesGrid"></div>
-      </section>
-    </main>
-
-    <script src="scripts/script.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
 </html>

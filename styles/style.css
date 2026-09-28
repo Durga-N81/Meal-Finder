@@ -1,4 +1,5 @@
-* {
+/*
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -53,3 +54,285 @@
     font-size: 14px;
     opacity: 0.9;
 }
+*/
+
+
+/* -------------------------
+   BASIC RESET
+------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+
+/* -------------------------
+   NAVBAR
+------------------------- */
+
+.navbar {
+    min-height: 70px;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-toggler {
+    border: 1px solid white;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+
+/* -------------------------
+   OFFCANVAS MENU
+------------------------- */
+
+.offcanvas {
+    width: 300px !important;
+}
+
+.offcanvas-header {
+    background-color: #e16120;
+    color: white;
+}
+
+.offcanvas-body {
+    padding: 0;
+}
+
+.list-group-item {
+    cursor: pointer;
+    padding: 15px 20px;
+    font-size: 17px;
+}
+
+.list-group-item:hover {
+    background-color: #f5f5f5;
+    color: #e16120;
+}
+
+
+/* -------------------------
+   HERO SECTION
+------------------------- */
+
+.hero {
+    min-height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("https://images.unsplash.com/photo-1547592180-85f173990554")
+        center / cover;
+}
+
+.hero h2 {
+    color: white;
+    margin-top: 30px;
+    font-size: 32px;
+}
+
+.sub-heading {
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+
+/* -------------------------
+   SEARCH BOX
+------------------------- */
+
+.search-box {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-box input {
+    flex: 1;
+
+    padding: 14px 18px;
+
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+
+    border-radius: 5px 0 0 5px;
+}
+
+.search-box button {
+    width: 60px;
+
+    border: none;
+
+    background-color: #e16120;
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    border-radius: 0 5px 5px 0;
+}
+
+.search-box button:hover {
+    background-color: #c94f12;
+}
+
+
+/* -------------------------
+   MAIN SECTIONS
+------------------------- */
+
+.section {
+    padding: 50px 7%;
+}
+
+.section.alt {
+    background-color: #f8f8f8;
+}
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 35px;
+
+    color: #333;
+    font-size: 30px;
+}
+
+
+/* -------------------------
+   CATEGORY GRID
+------------------------- */
+
+.grid {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+
+    gap: 25px;
+}
+
+
+/* -------------------------
+   CATEGORY CARD
+------------------------- */
+
+.card {
+    border: none;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background-color: white;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: #e16120;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* -------------------------
+   NO RESULT MESSAGE
+------------------------- */
+
+.no-result {
+    text-align: center;
+
+    color: #e16120;
+
+    font-size: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 576px) {
+
+    .hero {
+        min-height: 300px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .section {
+        padding: 35px 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+

@@ -4,78 +4,65 @@ let sideMenu = document.getElementById("sideMenu");
 let overlay = document.getElementById("overlay");
 let menuList = document.getElementById("menuList");
 
-
 // Open menu
 function openMenu() {
-    sideMenu.classList.add("open");
-    overlay.classList.add("show");
-
+  sideMenu.classList.add("open");
+  overlay.classList.add("show");
 }
-
 
 // Close menu
 function closeMenu() {
-    sideMenu.classList.remove("open");
-    overlay.classList.remove("show");
-
+  sideMenu.classList.remove("open");
+  overlay.classList.remove("show");
 }
 // Check if button exists
 if (hamburgerBtn) {
-
-    hamburgerBtn.addEventListener("click", openMenu);
-
+  hamburgerBtn.addEventListener("click", openMenu);
 }
 if (closeMenuBtn) {
-    closeMenuBtn.addEventListener("click", closeMenu);
+  closeMenuBtn.addEventListener("click", closeMenu);
 }
 if (overlay) {
-    overlay.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", closeMenu);
 }
 async function loadMenu() {
-    try {
-        let response = await fetch(
-            "https://www.themealdb.com/api/json/v1/1/categories.php"
-        );
-        let data = await response.json();
-        let categories = data.categories;
-        if (categories && categories.length > 0) {
-            let filteredCategories = categories.filter(function(category) {
-                return category.strCategory !== "Pork";
+  try {
+    let response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/categories.php",
+    );
+    let data = await response.json();
+    let categories = data.categories;
+    if (categories && categories.length > 0) {
+      let filteredCategories = categories.filter(function (category) {
+        return category.strCategory !== "Pork";
+      });
 
-            });
-
-            let menuItems = filteredCategories.map(function(category) {
-
-                return `
+      let menuItems = filteredCategories.map(function (category) {
+        return `
                     <li>
                         <a href="category.html?c=${encodeURIComponent(category.strCategory)}">
                             ${category.strCategory}
                         </a>
                     </li>
                 `;
-
-            });
-            let output = menuItems.reduce(function(total, item) {
-
-                return total + item;
-
-            }, "");
-            menuList.innerHTML = output;
-        } else {
-            menuList.innerHTML = "<li>No categories found</li>";
-        }
-    } catch (error) {
-        console.log("Error loading categories:", error);
-        menuList.innerHTML = "<li>Could not load menu</li>";
+      });
+      let output = menuItems.reduce(function (total, item) {
+        return total + item;
+      }, "");
+      menuList.innerHTML = output;
+    } else {
+      menuList.innerHTML = "<li>No categories found</li>";
     }
-
+  } catch (error) {
+    console.log("Error loading categories:", error);
+    menuList.innerHTML = "<li>Could not load menu</li>";
+  }
 }
 if (menuList) {
-    loadMenu();
+  loadMenu();
 }
 function mealCardHTML(meal) {
-
-    let output = `
+  let output = `
         <a class="card" href="meal.html?id=${meal.idMeal}">
 
             <div class="card-img-wrap">
@@ -100,47 +87,33 @@ function mealCardHTML(meal) {
         </a>
     `;
 
-
-    return output;
-
+  return output;
 }
 async function renderCategoriesGrid(targetId) {
+  let grid = document.getElementById(targetId);
+  if (!grid) {
+    return;
+  }
 
-    let grid = document.getElementById(targetId);
-    if (!grid) {
+  try {
+    // Fetch categories
+    let response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/categories.php",
+    );
 
-        return;
+    // Convert to JSON
+    let data = await response.json();
 
+    // Get categories
+    let categories = data.categories;
+    for (let i = 0; i < categories.length; i++) {
+      console.log(categories[i].strCategory);
     }
-
-
-    try {
-
-        // Fetch categories
-        let response = await fetch(
-            "https://www.themealdb.com/api/json/v1/1/categories.php"
-        );
-
-
-        // Convert to JSON
-        let data = await response.json();
-
-
-        // Get categories
-        let categories = data.categories;
-        for (let i = 0; i < categories.length; i++) {
-
-            console.log(categories[i].strCategory);
-
-        }
-        let filteredCategories = categories.filter(function(category) {
-
-            return category.strCategory !== "Pork";
-
-        });
-        let categoryCards = filteredCategories.map(function(category) {
-
-            return `
+    let filteredCategories = categories.filter(function (category) {
+      return category.strCategory !== "Pork";
+    });
+    let categoryCards = filteredCategories.map(function (category) {
+      return `
                 <a
                     class="card category-card"
                     href="category.html?c=${encodeURIComponent(category.strCategory)}"
@@ -162,31 +135,21 @@ async function renderCategoriesGrid(targetId) {
 
                 </a>
             `;
+    });
+    let finalOutput = categoryCards.reduce(function (total, card) {
+      return total + card;
+    }, "");
 
-        });
-        let finalOutput = categoryCards.reduce(function(total, card) {
+    // Display cards
+    grid.innerHTML = finalOutput;
+  } catch (error) {
+    console.log("Error loading categories:", error);
 
-            return total + card;
-
-        }, "");
-
-
-        // Display cards
-        grid.innerHTML = finalOutput;
-
-
-    } catch (error) {
-
-        console.log("Error loading categories:", error);
-
-        grid.innerHTML = "<p>Could not load categories.</p>";
-
-    }
-
+    grid.innerHTML = "<p>Could not load categories.</p>";
+  }
 }
 // Get category name from URL
 let categoryName = location.search.split("=")[1];
-
 
 // Get HTML elements
 let categoryInfo = document.getElementById("categoryInfo");
@@ -194,54 +157,44 @@ let mealsGrid = document.getElementById("mealsGrid");
 let noResultMsg = document.getElementById("noResultMsg");
 
 async function getCategory() {
+  let response = await fetch(
+    "https://www.themealdb.com/api/json/v1/1/categories.php",
+  );
 
-    let response = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/categories.php"
-    );
+  let data = await response.json();
 
-    let data = await response.json();
+  let categories = data.categories;
 
-    let categories = data.categories;
+  let output = "";
 
-    let output = "";
-
-    for (let i = 0; i < categories.length; i++) {
-
-        if (categories[i].strCategory == categoryName) {
-
-            output = `
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].strCategory == categoryName) {
+      output = `
                 <h2>${categories[i].strCategory}</h2>
                 <p>${categories[i].strCategoryDescription}</p>
             `;
-
-        }
-
     }
+  }
 
-    categoryInfo.innerHTML = output;
-
+  categoryInfo.innerHTML = output;
 }
 async function getMeals() {
+  let response = await fetch(
+    "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + categoryName,
+  );
 
-    let response = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + categoryName
-    );
+  let data = await response.json();
 
-    let data = await response.json();
+  let meals = data.meals;
 
-    let meals = data.meals;
+  let output = "";
+  if (meals == null) {
+    noResultMsg.innerHTML = "No meals found";
 
-    let output = "";
-    if (meals == null) {
-
-        noResultMsg.innerHTML = "No meals found";
-
-        return;
-
-    }
-    for (let i = 0; i < meals.length; i++) {
-
-        output += `
+    return;
+  }
+  for (let i = 0; i < meals.length; i++) {
+    output += `
             <div class="card">
 
                 <img 
@@ -253,22 +206,16 @@ async function getMeals() {
 
             </div>
         `;
+  }
 
-    }
-
-
-    mealsGrid.innerHTML = output;
-
+  mealsGrid.innerHTML = output;
 }
 if (categoryName) {
+  getCategory();
 
-    getCategory();
-
-    getMeals();
-
+  getMeals();
+} else {
+  categoryInfo.innerHTML = "No category selected";
 }
-else {
 
-    categoryInfo.innerHTML = "No category selected";
-
-}
+let searchInput = document.getElementById("searchInput"); let searchBtn = document.getElementById("searchBtn"); let mealsSection = document.getElementById("mealsSection"); let mealsGrid = document.getElementById("mealsGrid"); let noResultMsg = document.getElementById("noResultMsg"); // ========================== // SEARCH MEALS // ========================== async function searchMeals(query) { try { // Fetch meals from API let response = await fetch( "https://www.themealdb.com/api/json/v1/1/search.php?s=" + query ); // Convert response to JSON let data = await response.json(); let meals = data.meals; // Show meals section mealsSection.hidden = false; // Check if meals are found if (meals == null) { mealsGrid.innerHTML = ""; noResultMsg.hidden = false; return; } noResultMsg.hidden = true; // Create meal cards let output = ""; // Loop through meals for (let i = 0; i < meals.length; i++) { output += ` <div class="card"> <img src="${meals[i].strMealThumb}" alt="${meals[i].strMeal}" > <h3>${meals[i].strMeal}</h3> </div> `; } // Display meals mealsGrid.innerHTML = output; } catch (error) { console.log("Search error:", error); mealsGrid.innerHTML = "<p>Something went wrong. Please try again.</p>"; } } // ========================== // SEARCH BUTTON // ========================== function handleSearch() { let query = searchInput.value.trim(); // Check empty search if (query == "") { mealsSection.hidden = true; return; } searchMeals(query); } // Search button click searchBtn.addEventListener("click", handleSearch); // Press Enter to search searchInput.addEventListener("keyup", function(event) { if (event.key == "Enter") { handleSearch(); } }); // ========================== // SHOW CATEGORIES // ========================== renderCategoriesGrid("categoriesGrid"); // ========================== // CHECK URL FOR SEARCH // ========================== // Example: // index.html?s=pasta let query = location.search.split("=")[1]; if (query) { searchInput.value = query; searchMeals(query); } else { mealsSection.hidden = true; }

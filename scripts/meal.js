@@ -116,8 +116,9 @@ async function loadCategories(){
             ` <a href="category.html?c=${category.strCategory}" 
              class="card" > 
              <img src="${category.strCategoryThumb}" 
-             alt="${category.strCategory}" > 
-             <h3> ${category.strCategory} </h3>
+             alt="${category.strCategory}" >
+             <span class="cate-name"> 
+             <h3> ${category.strCategory} </h3></span>
               </a> `; }); 
               categoriesGrid.innerHTML = output;
              } catch (error) { 

@@ -15,10 +15,14 @@ async function loadCategories() {
     categories.map(function(category) { 
       output += ` 
           <a
-           href="category.html?c=${category.strCategory}" class="card" >
-          <img src="${category.strCategoryThumb}" 
+           href="category.html?c=${category.strCategory}" 
+           class="card" >
+          <img 
+              src="${category.strCategoryThumb}" 
               alt="${category.strCategory}" > 
-          <h3 class="cate-name">${category.strCategory}</h3> 
+          <h3 class="cate-name">
+            ${category.strCategory}
+          </h3> 
           </a> `; });
          categoriesGrid.innerHTML = output; 
         } catch (error) { 
@@ -48,8 +52,9 @@ async function searchMeals(foodName) {
                     <img 
                         src="${meal.strMealThumb}" 
                         alt="${meal.strMeal}">
-                    
-                        <h3>${meal.strMeal}</h3>
+                    <div class="card-body">
+                        <h3 class="meal-name">${meal.strMeal}</h3>
+                    </div>
                     
                 </a>
             `;

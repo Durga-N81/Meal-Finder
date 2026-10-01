@@ -64,7 +64,7 @@ async function loadCategoryMeals() {
                         alt="${meal.strMeal}"
                     >
                     <div class="card-body">
-                        <h3>${meal.strMeal}</h3>
+                        <h3 class="cate-name">${meal.strMeal}</h3>
                     </div>
                 </a>
             `;

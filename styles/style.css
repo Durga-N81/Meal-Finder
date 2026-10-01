@@ -1,34 +1,24 @@
-/* ---------------------------------------
-   Meal Finder - main stylesheet
-   ---------------------------------------- */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   color: #222;
   background: #fff;
 }
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 ul {
   list-style: none;
 }
-
 img {
   max-width: 100%;
   display: block;
 }
-
-/* ---------- NAVBAR ---------- */
 .navbar {
   background: #e2691f;
   display: flex;
@@ -38,13 +28,11 @@ img {
   position: relative;
   z-index: 20;
 }
-
 .navbar .logo h1 {
   color: #fff;
   font-size: 1.15rem;
   letter-spacing: 1px;
 }
-
 .hamburger-btn {
   background: none;
   border: none;
@@ -53,8 +41,6 @@ img {
   cursor: pointer;
   line-height: 1;
 }
-
-/* ---------- SIDE MENU ---------- */
 .side-menu {
   position: fixed;
   top: 0;
@@ -69,28 +55,24 @@ img {
   padding: 20px;
   overflow-y: auto;
 }
-
-
-
 .side-menu.open {
   transform: translateX(0);
 }
-
 .side-menu .close-btn {
   background: none;
-  border: none;
+  width: 30px;
+  border: 1px solid #e2691f;
+  border-radius: 60%;
   font-size: 1.6rem;
   color: #e2691f;
   cursor: pointer;
   float: right;
   margin-bottom: 12px;
 }
-
 .side-menu ul {
   clear: both;
   padding-top: 10px;
 }
-
 .side-menu li a {
   display: block;
   padding: 12px 4px;
@@ -98,11 +80,10 @@ img {
   color: #333;
   font-size: 0.95rem;
 }
-
 .side-menu li a:hover {
-  color: #e2691f;
-}
+  background-color: #e2691f;
 
+}
 .overlay {
   position: fixed;
   inset: 0;
@@ -112,16 +93,19 @@ img {
   transition: opacity 0.25s ease;
   z-index: 30;
 }
-
 .overlay.show {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* ---------- HERO ---------- */
 .hero {
-  background: linear-gradient(rgba(35, 22, 12, 0.55), rgba(35, 22, 12, 0.65)),
-    repeating-linear-gradient(45deg, #4b3320, #4b3320 10px, #45301e 10px, #45301e 20px);
+   background-image: linear-gradient( rgba(0,0,0,0.45),rgba(0,0,0,0.45) ),url("../assests/hero.jpg");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   min-height: 350px;
+  /* background: linear-gradient(rgba(35, 22, 12, 0.55), rgba(35, 22, 12, 0.65)),
+    repeating-linear-gradient(45deg, #4b3320, #4b3320 10px, #45301e 10px, #45301e 20px); */
   color: #fff;
   text-align: center;
   padding: 60px 20px 70px;
@@ -136,8 +120,9 @@ img {
 }
 
 .search-box input {
-  width: min(420px, 80vw);
-  padding: 14px 18px;
+  /* width: min(420px, 80vw); */
+  width: 350px;
+  padding: 14px 20px;
   border-radius: 30px;
   border: none;
   font-size: 1rem;
@@ -145,28 +130,28 @@ img {
 }
 
 .search-box button {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  border: none;
-  background: #e2691f;
+  border: 1px solid white;
+  background: #f26b21;
   color: #fff;
   font-size: 1.1rem;
   cursor: pointer;
 }
 
 .hero h2 {
-  font-size: 1.8rem;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
   margin-bottom: 8px;
 }
 
 .sub-heading {
   letter-spacing: 2px;
-  font-size: 0.8rem;
+  font-size: 14px;
   opacity: 0.9;
 }
-
-/* ---------- SECTIONS / GRID ---------- */
 .section {
   padding: 40px 24px;
 }
@@ -174,7 +159,6 @@ img {
 .section.alt {
   background: #f5f5f5;
 }
-
 .section-title {
   font-size: 1.4rem;
   letter-spacing: 1px;
@@ -182,7 +166,6 @@ img {
   margin-bottom: 22px;
   position: relative;
 }
-
 .section-title::after {
   content: "";
   display: block;
@@ -191,11 +174,9 @@ img {
   background: #e2691f;
   margin-top: 6px;
 }
-
 .section-title.indent {
   margin: 24px 0 0 24px;
 }
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -206,9 +187,11 @@ img {
   color: #777;
   font-style: italic;
   margin-bottom: 10px;
+ 
 }
 
-/* ---------- CARDS ---------- */
+
+/* cards */
 .card {
   background: #fff;
   border: 1px solid #eee;
@@ -219,7 +202,8 @@ img {
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 .card-img-wrap {
@@ -232,7 +216,7 @@ img {
   object-fit: cover;
 }
 
-.badge {
+/* .badge {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -242,13 +226,25 @@ img {
   letter-spacing: 0.5px;
   padding: 4px 10px;
   border-radius: 4px;
-}
+} */
 
-.badge.light {
+
+/* .badge.light {
   background: #fff;
   color: #e2691f;
   left: 10px;
   right: auto;
+} */
+.cate-name{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e2691f;
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
 .card-body {
@@ -261,11 +257,15 @@ img {
   display: block;
   margin-bottom: 4px;
 }
+.card-body h3{
+  background-color: #e2691f;
+}
 
 .card-body .title {
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.3;
+  /* text-transform: uppercase; */
 }
 
 /* ---------- CATEGORY DESCRIPTION BOX ---------- */

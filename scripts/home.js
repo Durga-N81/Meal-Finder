@@ -18,7 +18,7 @@ async function loadCategories() {
            href="category.html?c=${category.strCategory}" class="card" >
           <img src="${category.strCategoryThumb}" 
               alt="${category.strCategory}" > 
-          <h3>${category.strCategory}</h3> 
+          <h3 class="cate-name">${category.strCategory}</h3> 
           </a> `; });
          categoriesGrid.innerHTML = output; 
         } catch (error) { 
@@ -48,9 +48,9 @@ async function searchMeals(foodName) {
                     <img 
                         src="${meal.strMealThumb}" 
                         alt="${meal.strMeal}">
-                    <div class="card-body">
+                    
                         <h3>${meal.strMeal}</h3>
-                    </div>
+                    
                 </a>
             `;
         });

@@ -1,57 +1,82 @@
+// home.js
+
 let searchInput = document.getElementById("searchInput");
 let searchBtn = document.getElementById("searchBtn");
 let mealsSection = document.getElementById("mealsSection");
 let mealsGrid = document.getElementById("mealsGrid");
 let noResultMsg = document.getElementById("noResultMsg");
-async function searchMeals(query) {
+let categoriesGrid=document.getElementById("categoriesGrid");
+async function loadCategories() {
   try {
-    // Fetch meals from API
-    let response = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/search.php?s=" + query,
-    );
-    let data = await response.json();
-    let meals = data.meals;
-    mealsSection.hidden = false;
-    if (meals == null) {
-      mealsGrid.innerHTML = "";
-      noResultMsg.hidden = false;
-      return;
+    let response = await fetch( "https://www.themealdb.com/api/json/v1/1/categories.php" ); 
+    let data = await response.json(); 
+    let categories = data.categories;
+    let output = ""; 
+    categories.map(function(category) { 
+      output += ` 
+          <a
+           href="category.html?c=${category.strCategory}" class="card" >
+          <img src="${category.strCategoryThumb}" 
+              alt="${category.strCategory}" > 
+          <h3>${category.strCategory}</h3> 
+          </a> `; });
+         categoriesGrid.innerHTML = output; 
+        } catch (error) { 
+          console.log("Error loading categories:", error); 
+        } } 
+loadCategories();
+
+// Search meals
+async function searchMeals(foodName) {
+    try {
+
+        let response = await fetch(
+            `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`);
+        let data = await response.json();
+        let meals = data.meals;
+        mealsSection.hidden = false;
+        if (!meals) {
+            mealsGrid.innerHTML = "";
+            noResultMsg.hidden = false;
+            return;
+        }
+        noResultMsg.hidden = true;
+        let output = "";
+        meals.map(function(meal) {
+            output += `
+                <a href="meal.html?id=${meal.idMeal}" class="card">
+                    <img 
+                        src="${meal.strMealThumb}" 
+                        alt="${meal.strMeal}">
+                    <div class="card-body">
+                        <h3>${meal.strMeal}</h3>
+                    </div>
+                </a>
+            `;
+        });
+        mealsGrid.innerHTML = output;
+    } catch (error) {
+        console.log("Error:", error);
+        mealsGrid.innerHTML =
+            "<p>Something went wrong. Please try again.</p>";
+    }}
+// Search button
+searchBtn.addEventListener("click", function() {
+    let foodName = searchInput.value.trim();
+    if (foodName === "") {
+        mealsSection.hidden = true;
+        return;
     }
-    noResultMsg.hidden = true;
-    let output = "";
-    for (let i = 0; i < meals.length; i++) {
-      output += ` <div class="card">
-                 <img src="${meals[i].strMealThumb}"
-                 alt="${meals[i].strMeal}" > 
-                 <h3>${meals[i].strMeal}</h3> 
-                </div> 
-                `;
-    }
-    mealsGrid.innerHTML = output;
-  } catch (error) {
-    console.log("Search error:", error);
-    mealsGrid.innerHTML = "<p>Something went wrong. Please try again.</p>";
-  }
-}
-function handleSearch() {
-  let query = searchInput.value.trim();
-  if (query == "") {
-    mealsSection.hidden = true;
-    return;
-  }
-  searchMeals(query);
-}
-searchBtn.addEventListener("click", handleSearch);
-searchInput.addEventListener("keyup", function (event) {
-  if (event.key == "Enter") {
-    handleSearch();
-  }
+    searchMeals(foodName);
 });
-renderCategoriesGrid("categoriesGrid");
-let query = location.search.split("=")[1];
-if (query) {
-  searchInput.value = query;
-  searchMeals(query);
-} else {
-  mealsSection.hidden = true;
-}
+// Press Enter
+searchInput.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        let foodName = searchInput.value.trim();
+        if (foodName === "") {
+            mealsSection.hidden = true;
+            return;
+        }
+        searchMeals(foodName);
+    }
+});

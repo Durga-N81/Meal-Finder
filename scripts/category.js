@@ -1,72 +1,85 @@
 
-// Get category name from URL
-let categoryName = location.search.split("=")[1];
-
-// Get HTML elements
-
+let params = new URLSearchParams(window.location.search);
+let categoryName = params.get("c");
 let categoryInfo = document.getElementById("categoryInfo");
 let mealsGrid = document.getElementById("mealsGrid");
 let noResultMsg = document.getElementById("noResultMsg");
-
-async function getCategory() {
-  let response = await fetch(
-    "https://www.themealdb.com/api/json/v1/1/categories.php",
-  );
-
-  let data = await response.json();
-
-  let categories = data.categories;
-
-  let output = "";
-
-  for (let i = 0; i < categories.length; i++) {
-    if (categories[i].strCategory == categoryName) {
-      output = `
-                <h2>${categories[i].strCategory}</h2>
-                <p>${categories[i].strCategoryDescription}</p>
+let searchInput = document.getElementById("searchInput");
+let searchBtn = document.getElementById("searchBtn");
+function goSearch() {
+    let query = searchInput.value.trim();
+    if (query === "") {
+        return;
+    }    window.location.href = `index.html?s=${query}`;
+}
+searchBtn.addEventListener("click", goSearch);
+searchInput.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        goSearch();
+    }});
+async function loadCategoryInfo() {
+    try {
+        let response = await fetch(
+            "https://www.themealdb.com/api/json/v1/1/categories.php"
+        );
+        let data = await response.json();
+        let categories = data.categories || [];
+        let category = categories.find(function(item) {
+            return item.strCategory.toLowerCase() ===
+                   categoryName.toLowerCase();
+                          });
+        if (!category) {
+            categoryInfo.innerHTML = `
+                <h2>${categoryName}</h2>
             `;
-    }
-  }
-
-  categoryInfo.innerHTML = output;
-}
-async function getMeals() {
-  let response = await fetch(
-    "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + categoryName,
-  );
-
-  let data = await response.json();
-
-  let meals = data.meals;
-
-  let output = "";
-  if (meals == null) {
-    noResultMsg.innerHTML = "No meals found";
-
-    return;
-  }
-  for (let i = 0; i < meals.length; i++) {
-    output += `
-            <div class="card">
-
-                <img 
-                    src="${meals[i].strMealThumb}"
-                    alt="${meals[i].strMeal}"
-                >
-
-                <h3>${meals[i].strMeal}</h3>
-
-            </div>
+            return;
+        }
+        categoryInfo.innerHTML = `
+            <h2>${category.strCategory}</h2>
+            <p>${category.strCategoryDescription}</p>
         `;
-  }
-
-  mealsGrid.innerHTML = output;
+    } catch (error) {
+        console.log("Error:", error);
+          }
 }
-if (categoryName) {
-  getCategory();
-
-  getMeals();
+async function loadCategoryMeals() {
+    try {
+        let response = await fetch(
+            `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`
+        );
+        let data = await response.json();
+        let meals = data.meals;
+        if (!meals) {
+            noResultMsg.hidden = false;
+            mealsGrid.innerHTML = "";
+            return;
+        }
+        noResultMsg.hidden = true;
+        let output = "";
+        meals.map(function(meal) {
+            output += `
+                <a href="meal.html?id=${meal.idMeal}" class="card">
+                    <img
+                        src="${meal.strMealThumb}"
+                        alt="${meal.strMeal}"
+                    >
+                    <div class="card-body">
+                        <h3>${meal.strMeal}</h3>
+                    </div>
+                </a>
+            `;
+        });
+        mealsGrid.innerHTML = output;
+    } catch (error) {
+        console.log("Error:", error);
+        mealsGrid.innerHTML =
+            "<p>Something went wrong. Please try again.</p>";
+    }
+}
+if (!categoryName) {
+    categoryInfo.innerHTML =
+        "<p>No category selected.</p>";
 } else {
-  categoryInfo.innerHTML = "No category selected";
+    loadCategoryInfo();
+    loadCategoryMeals();
 }
-

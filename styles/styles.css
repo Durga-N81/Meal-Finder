@@ -19,12 +19,7 @@ img {
   max-width: 100%;
   display: block;
 }
-:root {
-  --orange: #e2691f;
-  --light-bg: #f5f5f5;
-  --border: #eeeeee;
-  --text: #222;
-}
+
 .logo {
   display: flex;
   align-items: center;
@@ -90,7 +85,7 @@ img {
   width: 28px;
   height: 28px;
   background: #fff;
-  border: 2px solid var(--orange);
+  border: 2px solid #e2691f;
   border-radius: 50%;
   color: var(--orange);
   font-size: 18px;
@@ -112,7 +107,7 @@ img {
   font-size: 14px;
 }
 .side-menu li a:hover {
-  background-color: var(--orange);
+  background-color: #e2691f;
   color: #fff;
 }
 .overlay {
@@ -163,7 +158,7 @@ img {
   height: 52px;
   border-radius: 50%;
   border: 1px solid #fff;
-  background: var(--orange);
+  background: #e2691f;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
@@ -201,7 +196,7 @@ img {
   display: block;
   width: 55px;
   height: 3px;
-  background: var(--orange);
+  background: #e2691f;
   margin-top: 8px;
 }
 .section-title.indent {
@@ -250,7 +245,7 @@ img {
   right: 10px;
   margin: 0;
   padding: 5px 10px;
-  background: var(--orange);
+  background: #e2691f;
   color: #fff;
   font-size: 11px;
   font-weight: 600;
@@ -260,6 +255,40 @@ img {
   display: block;
   opacity: 1;
   visibility: visible;
+}
+/* meal card category badge */
+#mealsGrid .card-img-wrap {
+  position: relative;
+}
+
+#mealsGrid .badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e2691f;
+  color: #fff;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
+/* meal area */
+#mealsGrid .area {
+  display: block;
+  color: #777;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+/* meal name */
+#mealsGrid .title {
+  display: block;
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 #mealsGrid .card > img {
   width: 100%;
@@ -292,7 +321,7 @@ img {
   margin: 30px 24px;
   padding: 22px 24px;
   background: #fdf6f1;
-  border: 1px solid var(--orange);
+  border: 1px solid #e2691f;
   border-radius: 4px;
 }
 .category-info h2 {
@@ -308,7 +337,7 @@ img {
 .breadcrumb {
   margin: 25px 24px;
   padding: 13px 18px;
-  background: var(--orange);
+  background: #e2691f;
   color: #fff;
   font-size: 13px;
   border-radius: 4px;
@@ -322,314 +351,171 @@ img {
 }
 .meal-card {
   margin: 24px;
-
   border: 1px solid #eee;
-
   border-radius: 5px;
-
   overflow: hidden;
-
   background: #fff;
-
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
-
-/* =========================================
-   MEAL DETAIL TOP BAR
-========================================= */
-
 .meal-card-topbar {
-  background: var(--orange);
-
+  background: #e2691f;
   color: #fff;
-
   padding: 12px 20px;
-
   display: flex;
-
   justify-content: space-between;
-
   font-size: 13px;
 }
-
-/* =========================================
-   MEAL DETAIL BODY
-========================================= */
-
 .meal-card-body {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 30px;
-
   padding: 28px;
 }
-
 .meal-card-body img {
   width: 100%;
-
   max-height: 500px;
-
   object-fit: cover;
-
-  border-radius: 4px;
+    border-radius: 4px;
 }
-
-/* =========================================
-   MEAL INFORMATION
-========================================= */
-
 .meal-info h2 {
-  color: var(--orange);
-
+  color: #e2691f;
   font-size: 22px;
-
-  border-bottom: 2px solid var(--orange);
-
+  border-bottom: 2px solid #e2691f;
   padding-bottom: 10px;
-
   margin-bottom: 15px;
 }
-
 .meal-info p {
   font-size: 13px;
-
   margin-bottom: 8px;
-
   line-height: 1.5;
 }
-
 .meal-info #mealSource {
   word-break: break-all;
-
   color: #2266cc;
 }
-
-/* =========================================
-   TAGS
-========================================= */
-
 .tags {
   display: flex;
-
   gap: 8px;
-
   flex-wrap: wrap;
-
   margin: 12px 0 18px;
 }
-
 .tags span {
-  border: 1px solid var(--orange);
-
-  color: var(--orange);
-
+  border: 1px solid #e2691f;
+  color: #e2691f;
   padding: 4px 10px;
-
   border-radius: 14px;
-
   font-size: 11px;
 }
-
-/* =========================================
-   INGREDIENTS
-========================================= */
-
 .ingredients-box {
-  background: var(--orange);
-
+  background: #e2691f;
   color: #fff;
-
   padding: 18px 20px;
-
   border-radius: 5px;
 }
-
 .ingredients-box h3 {
   font-size: 15px;
-
   margin-bottom: 12px;
 }
-
 .ingredients-list {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 10px 15px;
 }
-
 .ingredients-list li {
   display: flex;
-
   align-items: center;
-
   gap: 7px;
-
   font-size: 11px;
 }
-
 .ingredients-list .num {
   width: 19px;
   height: 19px;
-
   min-width: 19px;
-
-  background: transparent;
-
+  background: green;
   color: #fff;
-
   border: 1px solid #fff;
-
   border-radius: 50%;
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   font-size: 9px;
-
   font-weight: bold;
 }
-
-/* =========================================
-   MEASURES
-========================================= */
-
 .measures {
   padding: 0 28px 20px;
 }
-
 .measures h3 {
   font-size: 14px;
-
   margin-bottom: 10px;
 }
-
 .measure-grid {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 10px 35px;
-
   border: 1px solid #eee;
-
   border-radius: 4px;
-
   padding: 15px 18px;
 }
-
 .measure-grid span {
   color: #444;
-
   font-size: 12px;
 }
-
 .measure-grid span::before {
-  content: "♦";
-
-  color: var(--orange);
-
+  content: "🥄";
+  color: #e2691f;
   margin-right: 7px;
-
   font-size: 9px;
 }
-
-/* =========================================
-   INSTRUCTIONS
-========================================= */
-
 .instructions {
   padding: 0 28px 28px;
 }
-
 .instructions h3 {
   font-size: 14px;
-
   margin-bottom: 12px;
 }
-
 .instructions ul {
   display: flex;
-
   flex-direction: column;
-
   gap: 10px;
 }
-
 .instructions li {
   position: relative;
-
   padding-left: 26px;
-
   line-height: 1.6;
-
   color: #333;
-
   font-size: 12px;
 }
-
 .instructions li::before {
   content: "✓";
-
-  color: var(--orange);
-
+  color: #e2691f;
   position: absolute;
-
   left: 0;
-
   top: 2px;
-
   width: 16px;
   height: 16px;
-
-  border: 1px solid var(--orange);
-
+  border: 1px solid #e2691f;
   border-radius: 3px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   font-size: 9px;
 }
-
-/* =========================================
-   TABLET
-========================================= */
-
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
-
     gap: 18px;
   }
-
   #categoriesGrid .card > img {
     height: 170px;
   }
-
   #mealsGrid .card > img {
     height: 165px;
   }
-
   .meal-card-body {
     gap: 25px;
-
     padding: 22px;
   }
 }
-
-/* =========================================
-   MOBILE
-========================================= */
-
 @media (max-width: 700px) {
   .navbar {
     height: 55px;

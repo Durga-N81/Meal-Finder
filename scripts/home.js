@@ -47,17 +47,18 @@ async function searchMeals(foodName) {
         noResultMsg.hidden = true;
         let output = "";
         meals.map(function(meal) {
-            output += `
-                <a href="meal.html?id=${meal.idMeal}" class="card">
-                    <img 
-                        src="${meal.strMealThumb}" 
-                        alt="${meal.strMeal}">
-                    <div class="card-body">
-                        <h3 class="meal-name">${meal.strMeal}</h3>
-                    </div>
+            // output += `
+            //     <a href="meal.html?id=${meal.idMeal}" class="card">
+            //         <img 
+            //             src="${meal.strMealThumb}" 
+            //             alt="${meal.strMeal}">
+            //         <div class="card-body">
+            //             <h3 class="meal-name">${meal.strMeal}</h3>
+            //         </div>
                     
-                </a>
-            `;
+            //     </a>
+            // `;
+            output += mealCardHTML(meal)
         });
         mealsGrid.innerHTML = output;
     } catch (error) {

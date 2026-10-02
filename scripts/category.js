@@ -1,4 +1,4 @@
-
+// category js->shows category description and all meals in that category
 let params = new URLSearchParams(window.location.search);
 let categoryName = params.get("c");
 let categoryInfo = document.getElementById("categoryInfo");
@@ -17,6 +17,7 @@ searchInput.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         goSearch();
     }});
+    // 
 async function loadCategoryInfo() {
     try {
         let response = await fetch(

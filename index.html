@@ -1,46 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meal Finder</title>
-  <link rel="stylesheet" href="styles/styles.css" />
-</head>
-<body>
-  <header class="navbar">
-    <a href="index.html" class="logo">
-      <h1>🏠 MEAL FINDER</h1>
-    </a> 
-    <button class="hamburger-btn" id="hamburgerBtn">&#9776;</button>
-  </header>
-  <nav class="side-menu" id="sideMenu">
-    <button class="close-btn" id="closeMenuBtn">&times;</button>
-    <ul id="menuList"></ul>
-  </nav>
-  <div class="overlay" id="overlay"></div>
-  <section class="hero">
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search recipes here ..." />
-      <button id="searchBtn">&#128269;</button>
-    </div>
-    <h2>What are your favorite cuisines?</h2>
-    <p class="sub-heading">PERSONALIZE YOUR EXPERIENCE</p>
-  </section>
-  <main>
-    <section class="section" id="mealsSection" hidden>
-      <h2 class="section-title">Meals</h2>
-      <p id="noResultMsg" class="no-result" hidden>No food found</p>
-      <div class="grid" id="mealsGrid"></div>
-    </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Finder</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- navbar -->
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-utensils"></i>
+        <span>MEAL FINDER</span>
+      </a>
+      <button class="hamburger-btn" id="hamburgerBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </header>
+    <!-- hamburger menu -->
+    <nav class="side-menu" id="sideMenu">
+      <button class="close-btn" id="closeMenuBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <ul id="menuList"></ul>
+    </nav>
+    <div class="overlay" id="overlay"></div>
+    <!-- hero -->
+    <section class="hero">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search recipes here ..."
+        />
 
-    <section class="section alt">
-      <h2 class="section-title">CATEGORIES</h2>
-      <div class="grid" id="categoriesGrid"></div>
-    </section>
-  </main>
+        <button id="searchBtn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
 
-  <script src="scripts/common.js"></script>
-  <script src="scripts/home.js"></script>
-</body>
+      <h2>What are your favorite cuisines?</h2>
+      <p class="sub-heading">PERSONALIZE YOUR EXPERIENCE</p>
+    </section>
+    <main>
+      <!-- show after search -->
+      <section class="section" id="mealsSection" hidden>
+        <h2 class="section-title">Meals</h2>
+        <p id="noResultMsg" class="no-result" hidden>No food found</p>
+        <div class="grid" id="mealsGrid"></div>
+      </section>
+
+      <section class="section alt">
+        <h2 class="section-title">CATEGORIES</h2>
+        <div class="grid" id="categoriesGrid"></div>
+      </section>
+    </main>
+
+    <script src="scripts/common.js"></script>
+    <script src="scripts/home.js"></script>
+  </body>
 </html>
-

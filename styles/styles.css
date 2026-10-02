@@ -25,6 +25,22 @@ img {
   --border: #eeeeee;
   --text: #222;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: white;
+}
+
+.logo i {
+  font-size: 20px;
+}
+
+.logo span {
+  font-size: 24px;
+  font-weight: bold;
+}
 /* navbar */
 .navbar {
   height: 60px;
@@ -298,7 +314,11 @@ img {
   border-radius: 4px;
 }
 .breadcrumb a {
-  color: #fff;
+  color: #e2691f;
+  text-decoration: none;
+}
+.breadcrumb a i{
+  font-size: 16px;
 }
 .meal-card {
   margin: 24px;
@@ -664,201 +684,130 @@ img {
 
   .sub-heading {
     font-size: 11px;
-  }
-
-  /* SECTION */
-
+  } 
   .section {
     padding: 40px 13px;
   }
-
   .section-title {
     font-size: 18px;
-
     letter-spacing: 2px;
-
     margin-bottom: 25px;
   }
-
   .section-title.indent {
     margin-left: 12px;
   }
-
-  /* GRID */
-
   .grid {
     grid-template-columns: repeat(2, 1fr);
-
     gap: 14px;
   }
-
-  /* CATEGORY */
-
   #categoriesGrid .card > img {
     height: 135px;
   }
-
   #categoriesGrid .cate-name {
     top: 6px;
     right: 6px;
-
     font-size: 9px;
-
     padding: 3px 6px;
   }
-
-  /* MEALS */
-
-  #mealsGrid .card > img {
+    #mealsGrid .card > img {
     height: 135px;
   }
-
   #mealsGrid .card-body {
     padding: 8px 9px;
   }
-
   #mealsGrid .meal-name {
     font-size: 12px;
-  }
-
-  /* CATEGORY INFO */
-
+    }
   .category-info {
     margin: 20px 12px;
-
     padding: 17px;
   }
-
   .category-info h2 {
     font-size: 17px;
   }
-
   .category-info p {
     font-size: 11px;
-  }
-
-  /* BREADCRUMB */
-
+  } 
   .breadcrumb {
     margin: 20px 12px;
-
     padding: 11px 13px;
-
     font-size: 11px;
   }
-
-  /* MEAL DETAIL */
-
   .meal-card {
     margin: 15px 12px;
   }
-
   .meal-card-body {
     grid-template-columns: 1fr;
-
     gap: 20px;
-
     padding: 15px;
   }
-
   .meal-card-body img {
     max-height: none;
   }
-
   .meal-info h2 {
     font-size: 18px;
   }
-
   .ingredients-list {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .measures {
     padding: 0 15px 18px;
   }
-
   .measure-grid {
     grid-template-columns: 1fr;
-
     gap: 8px;
   }
-
   .instructions {
     padding: 0 15px 20px;
   }
-
   .instructions li {
     font-size: 11px;
   }
 }
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
 @media (max-width: 480px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-
     gap: 10px;
   }
-
   #categoriesGrid .card > img {
     height: 110px;
   }
-
   #mealsGrid .card > img {
     height: 110px;
   }
-
   #categoriesGrid .cate-name {
     font-size: 8px;
-
     padding: 2px 5px;
   }
-
   #mealsGrid .meal-name {
     font-size: 11px;
   }
-
   .hero h2 {
     font-size: 18px;
   }
-
   .search-box input {
     width: 60vw;
   }
-
-  .side-menu {
+ .side-menu {
     width: 230px;
   }
-
   .ingredients-list {
     grid-template-columns: 1fr 1fr;
   }
 }
-
-/* =========================================
-   VERY SMALL MOBILE
-========================================= */
-
 @media (max-width: 360px) {
   .grid {
     gap: 8px;
   }
-
   #categoriesGrid .card > img {
     height: 100px;
   }
-
   #mealsGrid .card > img {
     height: 100px;
   }
-
   #mealsGrid .card-body {
     padding: 6px;
   }
-
   #mealsGrid .meal-name {
     font-size: 10px;
   }
